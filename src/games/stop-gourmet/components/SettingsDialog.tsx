@@ -8,7 +8,7 @@ import { DialogTitle } from "@headlessui/react";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LettersSet, StopGourmetSettings } from "../stop-gourmet.types";
-import { stopGourmetDefaultSettings } from "../stop-gourmet.utils";
+import { stopGourmetDefaultSettings, stopGourmetSettingsKey } from "../stop-gourmet.utils";
 
 interface SettingsDialogProps {
   open: boolean;
@@ -29,7 +29,7 @@ const lettersSetOptions: SliderSelectorOption[] = [
 export function SettingsDialog({ open, onClose }: SettingsDialogProps) {
   const { control, register, handleSubmit, reset } = useForm<FormValues>();
   const [settings, updateSettings] = useLocalStorageEntry<StopGourmetSettings>(
-    "stop-gourmet-settings",
+    stopGourmetSettingsKey,
     stopGourmetDefaultSettings
   );
 
@@ -41,12 +41,14 @@ export function SettingsDialog({ open, onClose }: SettingsDialogProps) {
     onClose();
   };
 
+  // Resets the form every time the dialog opens.
   useEffect(() => {
+    if (!open) return;
     reset({
       lettersSet: settings.lettersSet,
       timerSpeed: settings.timerSpeed / 1000, // Converts from millis to seconds.
     });
-  }, [reset, settings]);
+  }, [open, reset, settings]);
 
   return (
     <DialogBase open={open} onClose={onClose}>

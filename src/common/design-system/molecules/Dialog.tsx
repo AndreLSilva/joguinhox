@@ -1,5 +1,5 @@
 import { Description, DialogTitle } from "@headlessui/react";
-import { Button } from "../atoms/Button";
+import { Button } from "../atoms/Button/Button";
 import { DialogBase } from "./DialogBase";
 
 interface DialogProps {
@@ -22,7 +22,7 @@ export function Dialog({
 }: DialogProps) {
   return (
     <DialogBase open={open} onClose={onClose}>
-      <DialogTitle className="text-title-md text-blue-500">{title}</DialogTitle>
+      <DialogTitle className="text-title text-blue-500">{title}</DialogTitle>
       <Description className="mt-4 text-subtitle">{message}</Description>
 
       <div className="mt-8 flex flex-col gap-4">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "../../atoms/Button";
+import { Button } from "../../atoms/Button/Button";
 import { ChevronLeftIcon } from "../../atoms/icons/chevron_left";
 import { ChevronRightIcon } from "../../atoms/icons/chevron_right";
 
@@ -73,6 +73,6 @@ function findOptionIndex(options: SliderSelectorOption[], value?: string) {
   if (!value) return 0;
   return Math.max(
     options.findIndex((c) => c.value === value),
-    0
+    0,
   );
 }

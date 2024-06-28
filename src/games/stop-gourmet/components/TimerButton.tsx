@@ -1,4 +1,4 @@
-import { Button } from "@/common/design-system/atoms/Button";
+import { Button } from "@/common/design-system/atoms/Button/Button";
 import { BackHandIcon } from "@/common/design-system/atoms/icons/back_hand";
 import { useEffect, useRef } from "react";
 import { useGameController } from "../GameControllerProvider";

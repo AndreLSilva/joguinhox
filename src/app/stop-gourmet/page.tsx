@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/common/design-system/atoms/Button";
+import { Button } from "@/common/design-system/atoms/Button/Button";
 import { SettingsIcon } from "@/common/design-system/atoms/icons/settings";
 import { GameControllerProvider } from "@/games/stop-gourmet/GameControllerProvider";
 import { Board } from "@/games/stop-gourmet/components/Board";

@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactNode, createElement } from "react";
-import { IconComponent } from "./icons/icons.types";
+import { IconComponent } from "../icons/icons.types";
 
 interface ButtonProps {
   className?: string;
@@ -15,7 +15,7 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
 }
 
-type ButtonSize = "md" | "lg";
+type ButtonSize = "lg" | "md" | "sm";
 type ButtonColor = "blue" | "red" | "green" | "yellow";
 
 export function Button({
@@ -32,9 +32,7 @@ export function Button({
   const buttonColor = getButtonColor(color, disabled);
 
   return (
-    <div
-      className={`flex shrink-0 items-center justify-center bg-slate-100 ${sizeStyle.base} ${className}`}
-    >
+    <div className={`flex items-center justify-center bg-slate-100 ${sizeStyle.base} ${className}`}>
       <button
         className={`relative flex w-full items-center justify-center gap-2 text-center enabled:active:shadow-none ${buttonColor} ${
           sizeStyle.button
@@ -55,7 +53,7 @@ function getButtonSize(size: ButtonSize, disabled: boolean, circle: boolean) {
     case "lg": {
       const rounded = circle ? "rounded-full" : "rounded-xl";
       return {
-        base: `px-2 pt-0 pb-3 shadow-[inset_0_-0.25rem_0_#00000022] ${rounded}`,
+        base: `text-title-small px-2 pt-0 pb-3 shadow-[inset_0_-0.25rem_0_#00000022] ${rounded}`,
         button: `px-2.5 min-w-[6.5rem] pt-0 ${
           disabled
             ? "h-[6rem] mt-2 pb-0"
@@ -67,11 +65,26 @@ function getButtonSize(size: ButtonSize, disabled: boolean, circle: boolean) {
     case "md": {
       const rounded = circle ? "rounded-full" : "rounded-xl";
       return {
-        base: `px-2 pt-0 pb-3 shadow-[inset_0_-0.25rem_0_#00000022] ${rounded}`,
-        button: `px-2.5 min-w-[3.25rem] pb-2 pt-0 h-[3.25rem] shadow-[inset_0_-0.5rem_0_#00000022] ${
-          disabled ? "" : "active:mt-2 active:pb-0 active:h-[2.75rem]"
+        base: `text-body px-2 pt-0 pb-3 shadow-[inset_0_-0.25rem_0_#00000022] ${rounded}`,
+        button: `px-2.5 min-w-[3.25rem] pt-0 ${
+          disabled
+            ? "h-[2.75rem] mt-2 pb-0"
+            : "pb-2 h-[3.25rem] shadow-[inset_0_-0.5rem_0_#00000022] active:mt-2 active:pb-0 active:h-[2.75rem]"
         } ${rounded}`,
         icon: "2rem",
+      };
+    }
+
+    case "sm": {
+      const rounded = circle ? "rounded-full" : "rounded-xl";
+      return {
+        base: `text-body-small px-2 pt-0 pb-3 shadow-[inset_0_-0.25rem_0_#00000022] ${rounded}`,
+        button: `px-2.5 min-w-[3.25rem] pt-0 ${
+          disabled
+            ? "h-[2.75rem] mt-2 pb-0"
+            : "pb-2 h-[3.25rem] shadow-[inset_0_-0.5rem_0_#00000022] active:mt-2 active:pb-0 active:h-[2.75rem]"
+        } ${rounded}`,
+        icon: "1.5rem",
       };
     }
   }

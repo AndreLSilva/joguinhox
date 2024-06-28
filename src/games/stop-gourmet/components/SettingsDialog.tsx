@@ -1,5 +1,5 @@
 import { ControlledSliderSelector } from "@/common/controlled-inputs/ControlledSliderSelector";
-import { Button } from "@/common/design-system/atoms/Button";
+import { Button } from "@/common/design-system/atoms/Button/Button";
 import { DialogBase } from "@/common/design-system/molecules/DialogBase";
 import { SliderSelectorOption } from "@/common/design-system/molecules/Inputs/SliderSelector";
 import { TextField } from "@/common/design-system/molecules/Inputs/TextField";
@@ -30,7 +30,7 @@ export function SettingsDialog({ open, onClose }: SettingsDialogProps) {
   const { control, register, handleSubmit, reset } = useForm<FormValues>();
   const [settings, updateSettings] = useLocalStorageEntry<StopGourmetSettings>(
     stopGourmetSettingsKey,
-    stopGourmetDefaultSettings
+    stopGourmetDefaultSettings,
   );
 
   const handleApplySettings: SubmitHandler<FormValues> = (values) => {
@@ -52,7 +52,7 @@ export function SettingsDialog({ open, onClose }: SettingsDialogProps) {
 
   return (
     <DialogBase open={open} onClose={onClose}>
-      <DialogTitle className="text-title-md text-blue-500">Settings</DialogTitle>
+      <DialogTitle className="text-title text-blue-500">Settings</DialogTitle>
 
       <form className="my-12 space-y-8" onSubmit={handleSubmit(handleApplySettings)}>
         <ControlledSliderSelector

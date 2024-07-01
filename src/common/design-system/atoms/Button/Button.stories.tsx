@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { StorySection } from "../../storybook/StorySection";
-import { FavoriteIcon } from "../icons/favorite";
+import { FavoriteIcon } from "../icons/icons-list/favorite";
 import { Button } from "./Button";
 
 export default {

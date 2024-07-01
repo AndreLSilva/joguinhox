@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../atoms/Button/Button";
-import { ChevronLeftIcon } from "../../atoms/icons/chevron_left";
-import { ChevronRightIcon } from "../../atoms/icons/chevron_right";
+import { ChevronLeftIcon } from "../../atoms/icons/icons-list/chevron_left";
+import { ChevronRightIcon } from "../../atoms/icons/icons-list/chevron_right";
 
 export interface SliderSelectorProps {
   label?: string;

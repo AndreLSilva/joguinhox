@@ -1,5 +1,5 @@
 import { Button } from "@/common/design-system/atoms/Button/Button";
-import { BackHandIcon } from "@/common/design-system/atoms/icons/back_hand";
+import { BackHandIcon } from "@/common/design-system/atoms/icons/icons-list/back_hand";
 import { useEffect, useRef } from "react";
 import { useGameController } from "../GameControllerProvider";
 import { useSettings } from "../hooks/useSettings";

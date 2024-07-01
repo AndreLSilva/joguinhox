@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/common/design-system/atoms/Button/Button";
-import { SettingsIcon } from "@/common/design-system/atoms/icons/settings";
+import { SettingsIcon } from "@/common/design-system/atoms/icons/icons-list/settings";
 import { GameControllerProvider } from "@/games/stop-gourmet/GameControllerProvider";
 import { Board } from "@/games/stop-gourmet/components/Board";
 import { SettingsDialog } from "@/games/stop-gourmet/components/SettingsDialog";

@@ -1,6 +1,7 @@
 import { Dialog } from "@/common/design-system/molecules/Dialog";
 import { ReactNode, createContext, useContext, useRef, useState } from "react";
 import { useSettings } from "./hooks/useSettings";
+import { letterSetsMap } from "./stop-gourmet.utils";
 
 interface GameControllerContextProps {
   gameRunning: boolean;
@@ -24,9 +25,10 @@ export function GameControllerProvider({ children }: { children: ReactNode }) {
   const [selectedLetter, setSelectedLetter] = useState<string>();
   const [usedLetters, setUsedLetters] = useState<string[]>([]);
 
-  const { lettersSet, timerSpeed } = useSettings();
+  const { settings } = useSettings();
 
   const gameRunning = !!lastPlay;
+  const lettersSet = letterSetsMap[settings.lettersSet];
 
   /**
    * Handles the timer button functionality. The timer button is used to either start the first
@@ -62,7 +64,7 @@ export function GameControllerProvider({ children }: { children: ReactNode }) {
 
   const resetTimer = () => {
     clearTimeout(timerTimeout.current);
-    timerTimeout.current = setTimeout(handleGameOver, timerSpeed);
+    timerTimeout.current = setTimeout(handleGameOver, settings.timerSpeed);
   };
 
   return (

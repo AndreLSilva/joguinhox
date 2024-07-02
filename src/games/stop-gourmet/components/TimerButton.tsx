@@ -9,7 +9,7 @@ export function TimerButton() {
   const currentLastPlayRef = useRef<number>(0);
 
   const { lastPlay, onTimerButtonClick: centerButton } = useGameController();
-  const { timerSpeed } = useSettings();
+  const { settings } = useSettings();
 
   // Handles the Counter indicator animation.
   useEffect(() => {
@@ -19,8 +19,9 @@ export function TimerButton() {
       if (!counterOverlayRef.current) return;
       if (currentLastPlayRef.current !== lastPlay) return;
 
-      const factor = lastPlay ? Math.min((Date.now() - lastPlay) / timerSpeed, 1) : 0;
-      const size = `${factor * 100}%`;
+      // If `lastPlay` is equal to zero, set's the progress to zero; otherwise, calculates the progress based on the elapsed time.
+      const progress = lastPlay && Math.min((Date.now() - lastPlay) / settings.timerSpeed, 1);
+      const size = `${progress * 100}%`;
 
       counterOverlayRef.current.style.width = size;
       counterOverlayRef.current.style.height = size;
@@ -28,7 +29,7 @@ export function TimerButton() {
       if (lastPlay !== 0) window.requestAnimationFrame(animate);
     };
     animate();
-  }, [lastPlay, timerSpeed]);
+  }, [lastPlay, settings.timerSpeed]);
 
   return (
     <Button

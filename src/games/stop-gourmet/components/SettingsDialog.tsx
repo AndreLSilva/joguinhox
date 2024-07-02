@@ -3,12 +3,11 @@ import { Button } from "@/common/design-system/atoms/Button/Button";
 import { DialogBase } from "@/common/design-system/molecules/DialogBase";
 import { SliderSelectorOption } from "@/common/design-system/molecules/Inputs/SliderSelector";
 import { TextField } from "@/common/design-system/molecules/Inputs/TextField";
-import { useLocalStorageEntry } from "@/common/utils/local-storage/useLocalStorageEntry";
 import { DialogTitle } from "@headlessui/react";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LettersSet, StopGourmetSettings } from "../stop-gourmet.types";
-import { stopGourmetDefaultSettings, stopGourmetSettingsKey } from "../stop-gourmet.utils";
+import { useSettings } from "../hooks/useSettings";
+import { LettersSet } from "../stop-gourmet.types";
 
 interface SettingsDialogProps {
   open: boolean;
@@ -28,10 +27,7 @@ const lettersSetOptions: SliderSelectorOption[] = [
 
 export function SettingsDialog({ open, onClose }: SettingsDialogProps) {
   const { control, register, handleSubmit, reset } = useForm<FormValues>();
-  const [settings, updateSettings] = useLocalStorageEntry<StopGourmetSettings>(
-    stopGourmetSettingsKey,
-    stopGourmetDefaultSettings,
-  );
+  const { settings, updateSettings } = useSettings();
 
   const handleApplySettings: SubmitHandler<FormValues> = (values) => {
     updateSettings({

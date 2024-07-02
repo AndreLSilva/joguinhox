@@ -1,21 +1,20 @@
-import { useLocalStorageEntry } from "@/common/utils/local-storage/useLocalStorageEntry";
-import { LettersSet, StopGourmetSettings } from "../stop-gourmet.types";
+import { useLocalStorageItem } from "@/common/utils/local-storage/useLocalStorageEntry";
+import { useCallback } from "react";
+import { StopGourmetSettings } from "../stop-gourmet.types";
 import { stopGourmetDefaultSettings, stopGourmetSettingsKey } from "../stop-gourmet.utils";
 
-const letterSets: Record<LettersSet, string> = {
-  basic: "ABCDEFGHIJLMNOPRSTUV",
-  medium: "ABCDEFGHIJLMNOPQRSTUVXZ",
-  full: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-};
-
 export function useSettings() {
-  const [settings] = useLocalStorageEntry<StopGourmetSettings>(
+  const [settings, update] = useLocalStorageItem<StopGourmetSettings>(
     stopGourmetSettingsKey,
-    stopGourmetDefaultSettings
+    stopGourmetDefaultSettings,
   );
 
-  return {
-    lettersSet: letterSets[settings.lettersSet],
-    timerSpeed: settings.timerSpeed,
-  };
+  const updateSettings = useCallback(
+    (newSettings: Partial<StopGourmetSettings>) => {
+      update((previous) => ({ ...previous, ...newSettings }));
+    },
+    [update],
+  );
+
+  return { settings, updateSettings };
 }

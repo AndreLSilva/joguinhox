@@ -23,7 +23,7 @@ export function Piece({ posX, posY, rotation, letter }: PieceProps) {
 
   return (
     <div
-      className="absolute flex h-24 w-20 origin-top-left -translate-x-1/2 -translate-y-1/2"
+      className="absolute flex aspect-[4/5] w-[5.375rem] origin-top-left -translate-x-1/2 -translate-y-1/2"
       style={{
         left: posX,
         top: posY,
